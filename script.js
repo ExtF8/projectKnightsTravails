@@ -1,24 +1,38 @@
 import knightMoves from './knightMoves.js';
 
 // Test cases
-
 const startPosition = [0, 0];
 const endPosition = [7, 7];
 const movesInput = knightMoves(startPosition, endPosition);
 
-const pathOutput = movesInput.path;
-const movesCountOutput = movesInput.movesCount;
-const pathMap = pathOutput
-    .map((square) => `[${square.join(',')}]`)
-    .join(' -> ');
+// Generate messages
+function generateMessages(startPosition, endPosition, movesInput) {
+    if (movesInput === null) {
+        return `No valid path exists for end position ${endPosition}. Please provide valid end position.`;
+    }
 
+    const pathOutput = movesInput.path
+        .map((square) => `[${square.join(',')}]`)
+        .join(' -> ');
+    const movesCountOutput = movesInput.movesCount;
 
-let messageStart = `Knight moves will start at ${startPosition}.`;
-let messageEnd = `Knight moves will end at ${endPosition}.`;
-let pathMessage = `Knight's path: ${pathMap}`;
-let countMessage = `Knight took ${movesCountOutput} moves to reach the end.`;
+    return {
+        messageStart: `Knight moves will start at ${startPosition}.`,
+        messageEnd: `Knight moves will end at ${endPosition}.`,
+        pathMessage: `Knight's path: ${pathOutput}`,
+        countMessage: `Knight took ${movesCountOutput} moves to reach the end.`,
+    };
+}
+function runTest(startPosition, endPosition, movesInput) {
+    const messages = generateMessages(startPosition, endPosition, movesInput);
+    if (typeof messages === 'string') {
+        console.log(messages);
+    } else {
+        console.log(messages.messageStart);
+        console.log(messages.messageEnd);
+        console.log(messages.pathMessage);
+        console.log(messages.countMessage);
+    }
+}
 
-console.log(messageStart);
-console.log(messageEnd);
-console.log(pathMessage);
-console.log(countMessage);
+runTest(startPosition, endPosition, movesInput);
