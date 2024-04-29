@@ -19,35 +19,39 @@ export default function knightMoves(start, end) {
 
     // BFS
     while (queue.length > 0) {
-        const path = queue.shift();
-        const [x, y] = path[path.length - 1];
+        const levelSize = queue.length;
+        for (let i = 0; i < levelSize; i++) {
+            const path = queue.shift();
+            const [x, y] = path[path.length - 1];
 
-        // Check if target square is reached
-        if (x === end[0] && y === end[1]) {
-            return { path, movesCount };
-        }
+            // Check if target square is reached
+            if (x === end[0] && y === end[1]) {
+                return { path, movesCount };
+            }
 
-        // Generate possible moves from current square
-        for (const [dx, dy] of moves) {
-            const newX = x + dx;
-            const newY = y + dy;
-            const newPosition = [newX, newY];
+            // Generate possible moves from current square
+            for (const [dx, dy] of moves) {
+                const newX = x + dx;
+                const newY = y + dy;
+                const newPosition = [newX, newY];
 
-            // Check if new position is valid and not visited
-            if (
-                isVAlidPosition(newX, newY) &&
-                !visited.has(newPosition.toString())
-            ) {
-                // Enqueue new path and mark position as visited
-                queue.push([...path, newPosition]);
-                visited.add(newPosition.toString());
-                movesCount++;
+                // Check if new position is valid and not visited
+                if (
+                    isVAlidPosition(newX, newY) &&
+                    !visited.has(newPosition.toString())
+                ) {
+                    // Enqueue new path and mark position as visited
+                    queue.push([...path, newPosition]);
+                    visited.add(newPosition.toString());
+                }
             }
         }
+        // Increment movesCount after exploring all squares at current level
+        movesCount++;
     }
 
     // If target square is not reachable
-    return 'No valid path exists';
+    return null;
 }
 
 function isVAlidPosition(x, y) {
