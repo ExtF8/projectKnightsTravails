@@ -2,9 +2,7 @@
 
 ## Introduction
 
-This project is part of [The Odin Project](https://www.theodinproject.com/lessons/javascript-knights-travails)<br />
-This project focuses on implementing a function called 'knightMoves' in JavaScript, which calculates the shortest path for a knight to move from one square ti another on a chessboard. <br />
-A knight, a chess piece, moves in an L-shaped pattern - two squares in one direction and then one square perpendicular to that direction. This project simulates the movement of a knight on an 8x8 chessboard, considering the rules of its movement.
+This project is part of [The Odin Project](https://www.theodinproject.com/lessons/javascript-knights-travails) and it focuses on implementing a function called 'knightMoves' in JavaScript, <br /> which calculates the shortest path for a knight to move from one square to another on a chessboard. <br /> A knight, a chess piece, moves in an L-shaped pattern - two squares in one direction and then one square perpendicular to that direction. <br /> This project simulates the movement of a knight on an 8x8 chessboard, considering the rules of its movement.
 
 ### Features
 
