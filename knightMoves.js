@@ -15,6 +15,8 @@ export default function knightMoves(start, end) {
     const queue = [[start]];
     const visited = new Set([start.toString()]);
 
+    let movesCount = 0;
+
     // BFS
     while (queue.length > 0) {
         const path = queue.shift();
@@ -22,7 +24,7 @@ export default function knightMoves(start, end) {
 
         // Check if target square is reached
         if (x === end[0] && y === end[1]) {
-            return path;
+            return { path, movesCount };
         }
 
         // Generate possible moves from current square
@@ -39,6 +41,7 @@ export default function knightMoves(start, end) {
                 // Enqueue new path and mark position as visited
                 queue.push([...path, newPosition]);
                 visited.add(newPosition.toString());
+                movesCount++;
             }
         }
     }
